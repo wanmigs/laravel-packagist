@@ -3,8 +3,9 @@
 namespace Fligno\Template;
 
 use Illuminate\Support\ServiceProvider;
+use Fligno\Template\Providers\RouteServiceProvider;
 
-class LoginServiceProvider extends ServiceProvider
+class TemplateServiceProvider extends ServiceProvider
 {
     protected $defer = true;
 
@@ -16,13 +17,10 @@ class LoginServiceProvider extends ServiceProvider
     public function boot()
     {
         // Load view
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'Login');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'Template');
 
         // Load migrations
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-
-        // Load routes
-        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
     }
 
     /**
@@ -32,6 +30,6 @@ class LoginServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->app->register(RouteServiceProvider::class);
     }
 }

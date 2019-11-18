@@ -1,9 +1,6 @@
 <?php
-
-
-Route::group([
-    'namespace' => 'Fligno\Template\Http\Controllers',
-    'middleware' => ['web']
-], function() {
-    return view('welcome');
+Route::get('Template', function(){
+    return view('Template::welcome');
 });
+
+Route::resource('test', 'TestController');
