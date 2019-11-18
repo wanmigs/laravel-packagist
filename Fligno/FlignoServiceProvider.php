@@ -24,7 +24,7 @@ class FlignoServiceProvider extends ServiceProvider
     public function register()
     {
         $folders = array_diff(scandir(__DIR__), array('..', '.', 'FlignoServiceProvider.php'));
-        $excludeFolder = ['Template'];
+        $excludeFolder = ['Template', '.git'];
 
         foreach ($folders as $folder) {
             if (strpos($folder, 'Trait') || in_array($folder, $excludeFolder))
