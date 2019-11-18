@@ -175,6 +175,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * Fligno Service Provider
+         */
+        Fligno\FlignoServiceProvider::class
+
     ],
 
     /*
