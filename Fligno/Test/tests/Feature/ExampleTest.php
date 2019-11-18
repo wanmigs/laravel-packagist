@@ -11,7 +11,7 @@ class ExampleTest extends TestCase
     /** @test */
     public function it_can_test()
     {
-        $response = $this->get('/sample');
+        $response = $this->get('/sample/test');
 
         $response->assertStatus(200);
     }
