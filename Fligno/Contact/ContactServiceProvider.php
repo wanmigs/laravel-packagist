@@ -1,12 +1,12 @@
 <?php
 
-namespace Fligno\Template;
+namespace Fligno\Contact;
 
 use Illuminate\Support\ServiceProvider;
-use Fligno\Template\Providers\RouteServiceProvider;
+use Fligno\Contact\Providers\RouteServiceProvider;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 
-class TemplateServiceProvider extends ServiceProvider
+class ContactServiceProvider extends ServiceProvider
 {
     protected $defer = true;
 
@@ -18,7 +18,7 @@ class TemplateServiceProvider extends ServiceProvider
     public function boot()
     {
         // Load view
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'Template');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'Contact');
 
         // Load migrations
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');

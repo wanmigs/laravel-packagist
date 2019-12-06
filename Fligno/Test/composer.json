@@ -1,7 +1,0 @@
-{
-    "name": "Fligno/Test",
-    "description": "Fligno package dependencies.",
-    "require": {
-        "wanmigs/laravel-system-check": "^1.0"
-    }
-}
