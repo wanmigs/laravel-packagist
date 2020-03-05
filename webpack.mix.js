@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +11,26 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix
+  .sass("resources/sass/app.scss", "public/css")
+  .react("resources/js/auth/login.js", "public/js") // Add this line of code
+  .react("resources/js/auth/register.js", "public/js") // Add this line of code
+  .react("resources/js/auth/verification.js", "public/js") // Add this line of code
+  .react("resources/js/auth/forget-password.js", "public/js") // Add this line of code
+  .react("resources/js/auth/reset-password.js", "public/js") // Add this line of code
+  .react("resources/js/home.js", "public/js") // Add this line of code
+  .react("resources/js/admin/app.js", "public/js/admin") // Add this line of code
+  .react("resources/js/admin/pages/login.js", "public/js/admin"); // Add this line of code
+
+mix.webpackConfig({
+  resolve: {
+    extensions: [".js", ".json", ".vue"],
+    alias: {
+      "~": path.join(__dirname, "./resources/js/admin")
+    }
+  },
+  output: {
+    publicPath: "/",
+    chunkFilename: "js/admin/[name].js"
+  }
+});

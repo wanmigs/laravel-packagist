@@ -1,4 +1,4 @@
-window._ = require('lodash');
+import Cookie from 'js-cookie';
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -8,7 +8,32 @@ window._ = require('lodash');
 
 window.axios = require('axios');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+let token = Cookie.get('oToken');
+
+if (token) {
+  axios.interceptors.request.use((config) => {
+    config.headers.common['Authorization']  = `Bearer ${token}`;
+    return config;
+  }, (error) => {
+    return Promise.reject(error);
+  });
+
+  axios.interceptors.response.use(function (response) {
+    return response;
+  }, function (error) {
+    if (401 === error.response.status) {
+      logout()
+    } else {
+      return Promise.reject(error);
+    }
+  });
+}
+
+const logout = async () => {
+  Cookie.set('oToken', '')
+  await axios.post('/api/logout')
+  window.location = '/login'
+}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
